@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="RestaurantData" targetNamespace="urn:thinktecture-com:demos:restaurantservice:data:v1"
+	elementFormDefault="qualified" xmlns="urn:thinktecture-com:demos:restaurantservice:data:v1"
+	xmlns:mstns="urn:thinktecture-com:demos:restaurantservice:data:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="restaurantInfo">
+		<xs:sequence>
+			<xs:element name="restaurantID" type="xs:int" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="address" type="xs:string" />
+			<xs:element name="city" type="xs:string" />
+			<xs:element name="state" type="xs:string" />
+			<xs:element name="zip" type="xs:string" />
+			<xs:element name="openFrom" type="xs:time" />
+			<xs:element name="openTo" type="xs:time" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="restaurantsList">
+		<xs:sequence>
+			<xs:element name="restaurant" type="restaurantInfo" 
+                        maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ratingInfo">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="poor" />
+			<xs:enumeration value="good" />
+			<xs:enumeration value="veryGood" />
+			<xs:enumeration value="excellent" />
+		</xs:restriction>
+	</xs:simpleType>
+
+  <xs:complexType name="customFault">
+    <xs:sequence>
+      <xs:element name="errorCode" type="xs:string"/>
+      <xs:element name="message" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="messages" 
+                  type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+</xs:schema>
